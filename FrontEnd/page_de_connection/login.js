@@ -1,10 +1,10 @@
-// Function to handle user authentication and navigation
+// Fonction permettant de gérer l'authentification et la navigation des utilisateurs
 async function handleLogin(event) {
     event.preventDefault();
-    
+    // Obtenir les données de l'utilisateur
     const email = document.querySelector("#email").value;
     const password = document.querySelector("#password").value;
-
+    // Demander à l'API de se connecter à l'aide des données fournies
     try {
         const response = await fetch('http://localhost:5678/api/users/login', {
             method: 'POST',
@@ -16,20 +16,20 @@ async function handleLogin(event) {
                 password: password
             })
         });
-
+        // Convertir la réponse en données JSON et vérifier si elle est correcte
         const data = await response.json();
 
         if (response.ok) {
-            // Store the token in localStorage for future authenticated requests
+            // Stockez le jeton dans localStorage pour les futures demandes authentifiées
             localStorage.setItem('token', data.token);
             
-            // Show success message
+            // Affichez un message de succès
             alert("Ok");
             
-            // Redirect to Homepage_edit.html
+            // Redirigez vers la page d'accueil
             window.location.href = "Homepage_edit.html";
         } else {
-            // Show error message
+            // Affichez un message d'erreur
             alert(data.message || "Error during authentication");
         }
     } catch (error) {
@@ -38,7 +38,7 @@ async function handleLogin(event) {
     }
 }
 
-// Add event listener when the document is loaded
+// Ajoutez un gestionnaire d'événement lorsque le document est chargé
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.querySelector("#login-form");
     if (loginForm) {

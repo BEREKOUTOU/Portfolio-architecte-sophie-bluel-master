@@ -178,10 +178,11 @@ a:hover {
     display: flex;
     font-family: 'Syne', sans-serif;    
 }
-.modifier i, p{
+.modifier i, p, a{
     display: flex;
     margin-left: 10px;
     color: #000000;
+    text-decoration: none;
 }
 .gallery {
 	width: 100%;
@@ -373,11 +374,13 @@ footer li{
 
 .se-connecter{
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 .se-connecter button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-family: 'syne',    sans-serif;
     font-size: 16px;    
     font-weight: 400;
@@ -389,7 +392,7 @@ footer li{
     background-color: #1D6154;
     border: none;
     border-radius: 60px;
-    padding: 10px 20px;
+    padding: 10px ;
     margin-top: 30px;
 }
 .mdp-oublie{
@@ -409,4 +412,299 @@ footer li{
     color: #3D3D3D;
     cursor: pointer;
     text-decoration: underline ;
+}
+/*modal*/
+.modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.modal-content{
+    width: 730px;        
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    max-width: 80%;
+    max-height: 80%;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation-name: modal-content;
+    animation-duration: 0.4s;
+}
+@-webkit-keyframes modal-content {
+    from {-webkit-transform: scale(0)} 
+    to {-webkit-transform: scale(1)}
+  }
+    
+  @keyframes modal-content {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+  }
+
+/* GALERIE PHOTO */
+.galerie-photo{
+    width: 630px;
+    height: 688px;
+    display: flex;
+    flex-direction: column;   
+    background-color: #FFFFFF;
+    align-items: center;
+}
+.fermer{
+   width: 100%;
+    justify-content: flex-end;
+    display: flex;
+    margin-right: 20px;
+    margin-top: 20px;
+    font-size: 16px;    
+    font-weight: bold;
+    color: #000000;
+}
+.fermer i{
+    cursor: pointer;
+}
+
+.galerie-photo .texte{
+    margin-top: 50px;
+    margin-left: 20px;
+    margin-right: 20px;   
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 31.5px;    
+    text-align: left;
+}
+
+.galerie-photo  h3{    
+    font-family: 'Work Sans', sans-serif;
+    font-size: 26px;    
+    font-weight: 400;
+    line-height: 19.2px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none; 
+    margin-bottom: 30px;
+}
+.grid{
+    display: flex;
+    width: 420px;
+    height: auto;
+    gap: 10px;
+    margin-bottom: 30px;
+    
+}
+
+.img1{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 76.86px;
+    height: 102px;
+    margin: 0;
+    padding: 0;
+    transition: opacity 0.3s ease;
+}
+
+.img1 img{
+    display: flex;
+    width: 76.86px;
+    height: 102px;
+    
+}
+
+.img1 i{
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    color: #FFFFFF;
+    cursor: pointer;
+     padding: 5px 5px;
+    background-color: #000000;
+}
+
+.img1 .fa-trash-can {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background-color: black;
+    color: white;
+    padding: 4px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.img1 .fa-trash-can:hover {
+    background-color: #333;
+    transform: scale(1.1);
+}
+
+.barre{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    margin-bottom: 50px;
+}
+.barre p{
+    width: 420px;
+    border-bottom:solid 1px #B3B3B3;
+}
+.ajouter-une-photo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 16px;    
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 50px; 
+    border: none;
+    background-color: transparent;   
+}
+.ajouter-une-photo a{
+    font-family: 'syne',    sans-serif;
+    font-size: 16px;    
+    font-weight: 400;
+    line-height: 19.2px;
+    color: #FFFFFF;
+    cursor: pointer;
+    width: 237px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1D6154;
+    border-radius: 60px;
+    text-decoration: none;
+}
+
+/* Styles pour le modal d'ajout de photo */
+.ajout-photo {
+    width: 630px;
+    padding: 20px;
+    font-family: 'Work Sans', sans-serif;
+}
+.ajout-photo .fermer {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #000000;
+}
+
+.ajout-photo  h3 {
+    font-family: 'Work Sans' sans-serif;
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 30.5px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    margin-bottom: 30px;
+}
+
+.preview-container {
+    width: 100%;
+    height: 200px;
+    background-color: #E8F1F6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    border-radius: 3px;
+}
+
+.fa-image {
+    font-size: 58px;
+    color: #B9C5CC;
+    margin-bottom: 15px;
+}
+
+.photo-upload-btn {
+    background-color: #CBD6DC;
+    color: #306685;
+    padding: 10px 33px;
+    border-radius: 50px;
+    cursor: pointer;
+    margin: 15px 0;
+}
+
+#photo-upload {
+    display: none;
+}
+
+.format-info {
+    color: #444444;
+    font-size: 10px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    color: #3D3D3D;
+    margin-bottom: 10px;
+}
+
+.form-group input,
+.form-group select {
+    height: 50px;
+    font-size: 14px;
+    border: none;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+    padding: 0 15px;
+}
+
+.form-validation {
+    padding-top: 20px;
+    border-top: 1px solid #B3B3B3;
+    text-align: center;
+}
+
+.valider-btn {
+    background-color: #A7A7A7;
+    color: white;
+    padding: 10px 50px;
+    border-radius: 60px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Syne';
+    font-weight: 700;
+}
+
+.valider-btn.active {
+    background-color: #1D6154;
+}
+
+#preview-image {
+    max-width: 100%;
+    max-height: 170px;
+    object-fit: contain;
+}
+
+.retour-galerie {
+    float: left;
+    cursor: pointer;
+}
+
+.close-add-modal {
+    float: right;
+    cursor: pointer;
 }
