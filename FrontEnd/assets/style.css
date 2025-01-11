@@ -184,7 +184,7 @@ a:hover {
     color: #000000;
     text-decoration: none;
 }
-.gallery {
+#gallery {
 	width: 100%;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
@@ -192,7 +192,7 @@ a:hover {
 	grid-row-gap: 20px;
 }
 
-.gallery img {
+#gallery img {
 	width: 100%;
 
 }
