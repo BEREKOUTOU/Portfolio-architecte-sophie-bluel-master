@@ -33,8 +33,8 @@ async function handleLogin(event) {
             alert(data.message || "Error during authentication");
         }
     } catch (error) {
-        alert("An error occurred during authentication");
-        console.error('Error:', error);
+        // Affichez un message d'erreur en cas d'exception
+        alert("An error occurred: " + error.message);
     }
 }
 
