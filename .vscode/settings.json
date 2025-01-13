@@ -1,7 +1,0 @@
-{ 
-    "liveServer.settings.ignoreFiles": [
-        "Backend/**"
-    ],
-    "liveServer.settings.port": 5502,
-    "liveServer.settings.multiRootWorkspaceName": "Portfolio-architecte-sophie-bluel-master"
-}
