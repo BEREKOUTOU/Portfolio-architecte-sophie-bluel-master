@@ -15,33 +15,59 @@ fetch('http://localhost:5678/api/works')
     
     .catch(error => console.error(error));    
 
-// Filtrez les éléments d’une liste grâce à la fonction filterList
-const boutonFiltrer = document.querySelector(".btn-filtrer");
-boutonFiltrer.addEventListener("click", function () {
-    // Filtrer les travaux par catégorie
-    const categories = document.querySelectorAll("input[type=checkbox]:checked");
-    const selectedCategories = Array.from(categories).map(category => category.value);
-    const works = document.querySelectorAll("figure");
-    works.forEach(work => {
-        if (selectedCategories.length === 0 || selectedCategories.includes(work.querySelector("figcaption").textContent)) {
-            work.style.display = "block";
-        } else {
-            work.style.display = "none";
-        }
-    }); 
-});
 
-// Filtrez les travaux par catégorie
-const categories = document.querySelectorAll("input[type=checkbox]");
-categories.forEach(category => {
-    category.addEventListener("change", function () {
-        const works = document.querySelectorAll("figure");
-        works.forEach(work => {
-            if (category.checked && work.querySelector("figcaption").textContent !== category.value) {
-                work.style.display = "none";
-            } else {
-                work.style.display = "block";
-            }
+//gestion des bouton tri
+const buttons = document.querySelectorAll('#myBtnContainer button');
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        buttons.forEach(btn => {
+            btn.classList.remove('active');
         });
+        button.classList.add('active');
     });
-}); 
+})
+// Fonction pour filtrer les éléments de la galerie
+const filterWorks = (category) => {
+    const works = document.querySelectorAll('figure');
+    works.forEach(work => {
+        const workCategory = work.getAttribute('data-category');
+        if (category === 'all' || workCategory === category) {
+            work.style.display = 'block';
+        } else {
+            work.style.display = 'none';
+        }
+    });
+}
+ // Affichage du nombre de travaux correspondant au filtre
+  const tous = document.querySelector('.tous');
+  const objects = document.querySelector('.objects');
+  const appartements = document.querySelector('.appartements');
+  const hotelRestaurants = document.querySelector('.hôtelRestaurants');
+  // Ajout des écouteurs d'événements pour les filtres
+  const myBtnContainer = document.querySelector('.objects');
+  myBtnContainer.addEventListener('click', () => {
+    tous.classList.remove('active');
+    objects.classList.add('active');
+    const works = category.filterWorks (function (work) {
+        return work.category === 'objects';
+    })
+   
+  });
+  myBtnContainer.addEventListener('click', () => {
+    tous.classList.remove('active');
+    appartements.classList.add('active');
+    const works = category.filterWorks (function (work) {
+        return work.category === 'appartements';
+    })
+  });
+  myBtnContainer.addEventListener('click', () => {
+    tous.classList.remove('active');
+    hotelRestaurants.classList.add('active');
+    const works = category.filterWorks (function (work) {
+        return work.category === 'hôtelRestaurants';
+    })
+  });
+  myBtnContainer.addEventListener('click', () => {
+    tous.classList.add('active');
+    filterWorks('all');
+  });
