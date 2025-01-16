@@ -11,6 +11,7 @@ const previewImage = document.getElementById('preview-image');
 const addPhotoForm = document.getElementById('add-photo-form');
 const validateBtn = document.querySelector('.valider-btn');
 const imageIcon = document.querySelector('.fa-image');
+console.log(addPhotoBtn);
 
 // Fonction pour ouvrir le modal principal
 const openModal = (e) => {
@@ -113,7 +114,7 @@ const updateFormValidation = () => {
 const addPhotoToGallery = (imageUrl, title) => {
     const gridContainer = document.querySelector('.grid');
     const newPhotoDiv = document.createElement('div');
-    newPhotoDiv.className = 'img1';
+    newPhotoDiv.className = 'figure img1';
     
     newPhotoDiv.innerHTML = `
         <img src="${imageUrl}" alt="${title}">
