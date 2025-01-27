@@ -272,7 +272,7 @@ footer li{
     margin-bottom: 2em;
 }
 
-#myBtnContainer .btn{   
+#myBtnContainer button{   
     font-family: 'Syne', sans-serif;    
     font-size: 16px;
     font-weight: 400;
@@ -293,8 +293,8 @@ footer li{
     transition: all 0.3s ease;
 }
 
-#myBtnContainer .btn:hover,
-#myBtnContainer .btn.active {
+#myBtnContainer button:hover,
+#myBtnContainer button.active {
     background: #1D6154;
     color: white;
 }
