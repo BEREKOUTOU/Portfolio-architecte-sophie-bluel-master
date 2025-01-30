@@ -142,13 +142,12 @@ a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 50px;
 }
 
 .mes-projets h3{
     font-family: 'Syne', sans-serif;    
     font-size: 36px;
-    font-weight: 700;
+    font-weight: 600;
     line-height: 43.2px;
     text-align: center;
     text-underline-position: from-font; 
@@ -178,7 +177,7 @@ a:hover {
     display: flex;
     font-family: 'Syne', sans-serif;    
 }
-.modifier i, p, a{
+#modifier i, p, a{
     display: flex;
     margin-left: 10px;
     color: #000000;
