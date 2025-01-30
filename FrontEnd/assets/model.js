@@ -109,29 +109,27 @@ const updateFormValidation = () => {
         validateBtn.classList.remove('active');
     }
 };
-
 // Fonction pour ajouter une nouvelle photo à la galerie
 const addPhotoToGallery = (imageUrl, title) => {
     const gridContainer = document.querySelector('.grid');
     const newPhotoDiv = document.createElement('div');
-    newPhotoDiv.className = 'figure img1';
-    
+    newPhotoDiv.className = 'figure';
+
     newPhotoDiv.innerHTML = `
-        <img src="${imageUrl}" alt="${title}">
+        <img src="${imageUrl}" alt="${title}" loading="lazy">
         <i class="fa-solid fa-trash-can"></i>
     `;
-    
+
     // Ajouter une animation d'apparition
     newPhotoDiv.style.opacity = '0';
     gridContainer.appendChild(newPhotoDiv);
-    
+
     // Déclencher l'animation d'apparition
     setTimeout(() => {
         newPhotoDiv.style.transition = 'opacity 0.3s ease';
         newPhotoDiv.style.opacity = '1';
     }, 10);
-};
-
+};   
 // Fonction pour supprimer une photo de la galerie
 const deletePhoto = (e) => {
     if (e.target.classList.contains('fa-trash-can')) {
