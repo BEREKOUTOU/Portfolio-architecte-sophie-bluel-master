@@ -2,9 +2,19 @@
 async function handleLogin(event) {
     event.preventDefault();
     // Obtenir les données de l'utilisateur
-    const email = document.querySelector("#email").value;
-    const password = document.querySelector("#password").value;
-    // Demander à l'API de se connecter à l'aide des données fournies
+    const email = document.querySelector("#email").value.trim();
+    const password = document.querySelector("#password").value.trim();
+    // Vérifier si les données sont valides
+    if (email && password) {
+        // Appeler la fonction de connexion de l'API
+        await loginUser(email, password);
+    } else {
+        alert("Veuillez remplir tous les champs");
+    }
+}
+
+// Fonction de connexion de l'API
+async function loginUser(email, password) {
     try {
         const response = await fetch('http://localhost:5678/api/users/login', {
             method: 'POST',
@@ -22,19 +32,15 @@ async function handleLogin(event) {
         if (response.ok) {
             // Stockez le jeton dans localStorage pour les futures demandes authentifiées
             localStorage.setItem('token', data.token);
-            
-            // Affichez un message de succès
-            alert("Ok");
-            
             // Redirigez vers la page d'accueil
             window.location.href = "Homepage_edit.html";
         } else {
             // Affichez un message d'erreur
-            alert(data.message || "Error during authentication");
+            alert(data.message || "Erreur lors de l'authentification");
         }
     } catch (error) {
         // Affichez un message d'erreur en cas d'exception
-        alert("An error occurred: " + error.message);
+        alert("Une erreur est survenue : " + error.message);
     }
 }
 
