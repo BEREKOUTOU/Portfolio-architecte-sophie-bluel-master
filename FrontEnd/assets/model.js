@@ -131,7 +131,7 @@ const addPhotoToGallery = (imageUrl, title) => {
     }, 10);
 };   
 // Fonction pour supprimer une photo de la galerie
-const deletePhoto = (e) => {
+const deletePhoto = async (e) => {
     if (e.target.classList.contains('fa-trash-can')) {
         const photoContainer = e.target.closest('.img1');
         if (photoContainer) {
@@ -140,9 +140,11 @@ const deletePhoto = (e) => {
             photoContainer.style.opacity = '0';
             
             // Supprimer l'élément après l'animation
-            setTimeout(() => {
+            const deleted = await deleteWork();
+            if (deleted) {
+                displayWorks(0); // remplacer le 0 par l'identifiant du work
                 photoContainer.remove();
-            }, 300);
+            }
         }
     }
 };
