@@ -110,26 +110,18 @@ const updateFormValidation = () => {
     }
 };
 // Fonction pour ajouter une nouvelle photo à la galerie
-const addPhotoToGallery = (imageUrl, title) => {
-    const gridContainer = document.querySelector('.grid');
-    const newPhotoDiv = document.createElement('div');
-    newPhotoDiv.className = 'figure';
-
+const addPhotoToGallery = async (imageUrl, title) => {
+    const newPhotoDiv = document.createElement('figure');
+    newPhotoDiv.classList.add('photo');
     newPhotoDiv.innerHTML = `
-        <img src="${imageUrl}" alt="${title}" loading="lazy">
-        <i class="fa-solid fa-trash-can"></i>
+        <img src="${imageUrl}" alt="${title}">
+        <figcaption>${title}</figcaption>
     `;
-
-    // Ajouter une animation d'apparition
-    newPhotoDiv.style.opacity = '0';
-    gridContainer.appendChild(newPhotoDiv);
-
-    // Déclencher l'animation d'apparition
-    setTimeout(() => {
-        newPhotoDiv.style.transition = 'opacity 0.3s ease';
-        newPhotoDiv.style.opacity = '1';
-    }, 10);
-};   
+    const gridContainer = document.getElementById('gallery');
+    if (gridContainer) {
+      gridContainer.appendChild(newPhotoDiv);
+    }
+  };
 // Fonction pour supprimer une photo de la galerie
 const deletePhoto = async (e) => {
     if (e.target.classList.contains('fa-trash-can')) {
