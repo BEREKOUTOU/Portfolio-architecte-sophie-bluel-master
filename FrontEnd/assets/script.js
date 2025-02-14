@@ -28,7 +28,7 @@ const displayWorks = async (category) => {
   });
 };
 
-const deleteWork = async (id, photoContainer) => {
+const deleteWork = async (id) => {
   const token = localStorage.getItem("token");
 
   const response = await fetch(`http://localhost:5678/api/works/${id}`, {

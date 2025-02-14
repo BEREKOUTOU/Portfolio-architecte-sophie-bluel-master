@@ -19,7 +19,19 @@ const openModal = (e) => {
     modal1.style.display = 'flex';
     modal1.setAttribute('aria-hidden', 'false');
     modal1.setAttribute('aria-modal', 'true');
+
+    document.querySelector(".galerie-photo .grid").innerHTML = "";
+
+    displayModalWorks();
 };
+
+const displayModalWorks = async () => {
+    const works = await fetchWorks();
+    for (let i = 0; i < works.length; i++) {
+        const work = works[i];
+        addPhotoToGallery(work);
+    }
+}
 
 // Fonction pour fermer le modal principal
 const closeModal = () => {
@@ -110,45 +122,76 @@ const updateFormValidation = () => {
     }
 };
 // Fonction pour ajouter une nouvelle photo à la galerie
-const addPhotoToGallery = async (imageUrl, title) => {
-    const newPhotoDiv = document.createElement('figure');
-    newPhotoDiv.classList.add('photo');
-    newPhotoDiv.innerHTML = `
-        <img src="${imageUrl}" alt="${title}">
-        <figcaption>${title}</figcaption>
-    `;
-    const gridContainer = document.getElementById('gallery');
+const addPhotoToGallery = async (work) => {
+    const workTitle = work.title;
+    const workImageUrl = work.imageUrl;
+
+    const newPhotoDiv = document.createElement("div");
+    newPhotoDiv.classList.add("modal-work");
+
+    const newPhotoImg = document.createElement('img');
+    newPhotoImg.src = workImageUrl;
+    newPhotoImg.alt = workTitle;
+
+    const newPhotoTrashIcon = document.createElement("i");
+    newPhotoTrashIcon.className = "fa-solid fa-trash-can";
+    newPhotoTrashIcon.addEventListener("click", (e) => deletePhoto(e, newPhotoDiv, work))
+
+    newPhotoDiv.appendChild(newPhotoTrashIcon);
+    newPhotoDiv.appendChild(newPhotoImg);
+
+    const gridContainer = document.querySelector('.galerie-photo .grid');
     if (gridContainer) {
-      gridContainer.appendChild(newPhotoDiv);
-    }
-  };
-// Fonction pour supprimer une photo de la galerie
-const deletePhoto = async (e) => {
-    if (e.target.classList.contains('fa-trash-can')) {
-        const photoContainer = e.target.closest('.img1');
-        if (photoContainer) {
-            // Animation de suppression
-            photoContainer.style.transition = 'opacity 0.3s ease';
-            photoContainer.style.opacity = '0';
-            
-            // Supprimer l'élément après l'animation
-            const deleted = await deleteWork();
-            if (deleted) {
-                displayWorks(0); // remplacer le 0 par l'identifiant du work
-                photoContainer.remove();
-            }
-        }
+        gridContainer.appendChild(newPhotoDiv);
     }
 };
+// Fonction pour supprimer une photo de la galerie
+const deletePhoto = async (e, photoContainer, work) => {
+    e.preventDefault();
+
+    // Supprimer l'élément après l'animation
+    const deleted = await deleteWork(work.id);
+    if (deleted) {
+        displayWorks();
+        photoContainer.remove();
+        closeModal();
+    }
+};
+
+
+// const deletePhoto = async (e) => {
+//     if (e.target.classList.contains('fa-trash-can')) {
+//         const photoContainer = e.target.closest('.img1');
+//         if (photoContainer) {
+//             const workId = photoContainer.getAttribute("data-id");
+
+//             if (!workId) {
+//                 console.error("ID du work manquant");
+//                 return;
+//             }
+
+//             // Animation de suppression
+//             photoContainer.style.transition = 'opacity 0.3s ease';
+//             photoContainer.style.opacity = '0';
+
+//             // Supprimer l'élément après l'animation
+//             const deleted = await deleteWork(workId);
+//             if (deleted) {
+//                 displayWorks();
+//                 photoContainer.remove();
+//             }
+//         }
+//     }
+// };
 
 // Gérer la soumission du formulaire
 const handleFormSubmit = (e) => {
     e.preventDefault();
-    
+
     const title = document.getElementById('title').value;
     const category = document.getElementById('category').value;
     const imageUrl = previewImage.src;
-    
+
     if (title && category && imageUrl) {
         addPhotoToGallery(imageUrl, title);
         closeAddPhotoModal();
@@ -169,10 +212,10 @@ addPhotoForm.addEventListener('submit', handleFormSubmit);
 document.getElementById('title').addEventListener('input', updateFormValidation);
 document.getElementById('category').addEventListener('change', updateFormValidation);
 
-// Ajouter les écouteurs d'événements pour la suppression
-document.querySelectorAll('.grid').forEach(grid => {
-    grid.addEventListener('click', deletePhoto);
-});
+// // Ajouter les écouteurs d'événements pour la suppression
+// document.querySelectorAll('.grid').forEach(grid => {
+//     grid.addEventListener('click', deletePhoto);
+// });
 
 // Fermer modal en cliquant à l'extérieur
 window.addEventListener('click', (e) => {
