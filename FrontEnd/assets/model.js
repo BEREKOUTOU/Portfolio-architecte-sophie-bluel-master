@@ -24,7 +24,7 @@ const openModal = (e) => {
 
   displayModalWorks();
 };
-
+// Fonction pour afficher les photos du modal principal
 const displayModalWorks = async () => {
   const works = await fetchWorks();
   for (let i = 0; i < works.length; i++) {
@@ -51,7 +51,7 @@ const openAddPhotoModal = (e) => {
   resetForm();
   createCategoryOptions();
 };
-
+// Fonction pour créer les options de catégorie
 const createCategoryOptions = async () => {
   const categories = await fetchCategories();
   categorySelect.innerHTML =
@@ -141,7 +141,7 @@ const updateFormValidation = () => {
     validateBtn.classList.remove("active");
   }
 };
-// Fonction pour ajouter une nouvelle photo à la galerie
+// Fonction pour ajouter une photo à la galerie
 const addPhotoToGallery = async (work) => {
   const workTitle = work.title;
   const workImageUrl = work.imageUrl;
@@ -179,32 +179,6 @@ const deletePhoto = async (e, photoContainer, work) => {
     closeModal();
   }
 };
-
-// const deletePhoto = async (e) => {
-//     if (e.target.classList.contains('fa-trash-can')) {
-//         const photoContainer = e.target.closest('.img1');
-//         if (photoContainer) {
-//             const workId = photoContainer.getAttribute("data-id");
-
-//             if (!workId) {
-//                 console.error("ID du work manquant");
-//                 return;
-//             }
-
-//             // Animation de suppression
-//             photoContainer.style.transition = 'opacity 0.3s ease';
-//             photoContainer.style.opacity = '0';
-
-//             // Supprimer l'élément après l'animation
-//             const deleted = await deleteWork(workId);
-//             if (deleted) {
-//                 displayWorks();
-//                 photoContainer.remove();
-//             }
-//         }
-//     }
-// };
-
 // Gérer la soumission du formulaire
 const handleFormSubmit = async (e) => {
   e.preventDefault();
@@ -213,7 +187,7 @@ const handleFormSubmit = async (e) => {
   const category = categorySelect.value;
   const image = photoUploadInput.files[0];
   const token = localStorage.getItem("token");
-
+ // Vérifier si tous les champs sont remplis
   const formData = new FormData();
   formData.append("title", title);
   formData.append("category", category);
@@ -247,18 +221,6 @@ returnToGalleryBtn.addEventListener("click", returnToGallery);
 photoUploadInput.addEventListener("change", handlePhotoUpload);
 addPhotoForm.addEventListener("submit", handleFormSubmit);
 addPhotoForm.addEventListener("change", updateFormValidation);
-
-// document
-//   .getElementById("title")
-//   .addEventListener("input", updateFormValidation);
-// document
-//   .getElementById("category")
-//   .addEventListener("change", updateFormValidation);
-
-// // Ajouter les écouteurs d'événements pour la suppression
-// document.querySelectorAll('.grid').forEach(grid => {
-//     grid.addEventListener('click', deletePhoto);
-// });
 
 // Fermer modal en cliquant à l'extérieur
 window.addEventListener("click", (e) => {
