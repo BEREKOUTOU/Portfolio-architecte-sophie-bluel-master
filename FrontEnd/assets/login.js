@@ -36,7 +36,7 @@ async function loginUser(email, password) {
       window.location.href = "./index.html";
     } else {
       // Affichez un message d'erreur
-      alert(data.message || "Erreur lors de l'authentification");
+      alert("Email et / ou mot de passe incorrect.");
     }
   } catch (error) {
     // Affichez un message d'erreur en cas d'exception

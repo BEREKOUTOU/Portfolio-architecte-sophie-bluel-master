@@ -1,3 +1,6 @@
+// Variables
+let selectedCategory = "Tous";
+
 // Fonction des works
 // Récupération des fichiers JSON works
 const fetchWorks = async () => {
@@ -72,6 +75,7 @@ const createButtonCategory = (category) => {
 };
 // Fonction de changement de catégories
 const addButtonCategoryListener = (button, category) => {
+  selectedCategory = category;
   const activeButton = document.querySelector(".category.active");
   activeButton.classList.remove("active");
   button.classList.add("active");
