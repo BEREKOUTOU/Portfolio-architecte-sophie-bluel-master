@@ -32,6 +32,7 @@ const displayWorks = async (category) => {
 };
 
 const deleteWork = async (id) => {
+  try {
   const token = localStorage.getItem("token");
 
   const response = await fetch(`http://localhost:5678/api/works/${id}`, {
@@ -41,7 +42,12 @@ const deleteWork = async (id) => {
     },
   });
 
-  return response.ok;
+  if (!response.ok) {
+    throw new Error("Erreur lors de la suppression de la photo");
+  }
+  } catch (error) { 
+    console.error(error);
+  }
 };
 
 // Fonctions des catégories
